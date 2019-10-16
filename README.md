@@ -16,7 +16,7 @@ WWL relies on the following dependencies:
 
 ## Installation
 
-CURRENTLY UNDER DEVELOPMENT.
+**CURRENTLY UNDER DEVELOPMENT**
 
 The easiest way is to install WWL from the Python Package Index (PyPI) via
 
@@ -26,7 +26,7 @@ $ pip install cython numpy wwl
 
 ## Usage
 
-CURRENTLY UNDER DEVELOPMENT.
+**CURRENTLY UNDER DEVELOPMENT**
 
 The WWL package contains function to generate a `n x n` kernel matrix between 
 a set of `n` graphs.
@@ -58,7 +58,7 @@ Computational Biology Lab](https://www.bsse.ethz.ch/mlcb):
 Please use the following BibTeX citation when using our method or comparing against it:
 ```
 @incollection{Togninalli19,
-  author    = {ogninalli, Matteo and Ghisu, Elisabetta and Llinares-Lopez, Felipe and Rieck, Bastian and Borgwardt, Karsten},
+  author    = {Togninalli, Matteo and Ghisu, Elisabetta and Llinares-Lopez, Felipe and Rieck, Bastian and Borgwardt, Karsten},
   title     = {Wasserstein Weisfeiler-Lehman Graph Kernels},
   booktitle = {Advances in Neural Information Processing Systems 32},
   year      = {2019},

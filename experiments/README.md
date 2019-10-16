@@ -28,6 +28,8 @@ optional arguments:
   --gridsearch          Enable grid search
   --sinkhorn            Use sinkhorn approximation
   --h H                 (Max) number of WL iterations
+
+
 # For example:
 python main.py -d ENZYMES --gridsearch --crossvalidation --h 7
 ```
