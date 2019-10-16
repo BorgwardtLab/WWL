@@ -21,7 +21,6 @@ def read_labels(filename):
     Reads labels from a file. Labels are supposed to be stored in each
     line of the file. No further pre-processing will be performed.
     '''
-
     labels = []
     with open(filename) as f:
         labels = f.readlines()
@@ -64,6 +63,14 @@ def load_continuous_graphs(data_directory):
         node_features.append(np.asarray(node_features_cur).astype(float).reshape(-1,1))
         adj_mat.append(adj_mat_cur.astype(int))
         n_nodes.append(adj_mat_cur.shape[0])
+
+    # Check if there is a node_features.npy file 
+    # containing continuous attributes
+    # PS: these were obtained by processing the TU Dortmund website
+    # If none is present, keep degree or label as features.
+    attribtues_filenames = os.path.join(data_directory, 'node_features.npy')
+    if os.path.isfile(attribtues_filenames):
+        node_features = np.load(attribtues_filenames)
 
     n_nodes = np.asarray(n_nodes)
     node_features = np.asarray(node_features)

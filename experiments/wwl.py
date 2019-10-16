@@ -2,7 +2,7 @@
 # This file contains the functions to compute the node embeddings and to compute
 # the wasserstein distance matrix
 #
-# October 2019, M. Togninalli
+# October 2019, M. Togninalli, E. Ghisu, B. Rieck
 # -----------------------------------------------------------------------------
 import numpy as np
 
@@ -18,7 +18,7 @@ import copy
 from collections import defaultdict
 from typing import List
 
-from utilities import load_continuous_graphs, create_labels_seq_cont
+from utilities import load_continuous_graphs, create_labels_seq_cont, retrieve_graph_filenames
 
 ####################
 # Embedding schemes
@@ -46,7 +46,7 @@ def compute_wl_embeddings_discrete(data_directory, h):
     graphs = [ig.read(filename) for filename in graph_filenames]
 
     wl = WeisfeilerLehman()
-    label_dicts = wl.fit_transform(graphs, args.num_iterations)
+    label_dicts = wl.fit_transform(graphs, h)
 
     # Each entry in the list represents the label sequence of a single
     # graph. The label sequence contains the vertices in its rows, and
@@ -54,7 +54,7 @@ def compute_wl_embeddings_discrete(data_directory, h):
     #
     # Hence, (i, j) will contain the label of vertex i at iteration j.
     label_sequences = [
-        np.full((len(graph.vs), args.num_iterations + 1), np.nan) for graph in graphs
+        np.full((len(graph.vs), h + 1), np.nan) for graph in graphs
     ]   
 
     for iteration in sorted(label_dicts.keys()):
