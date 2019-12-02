@@ -1,3 +1,5 @@
 # Junk files and folders
 .DS_Store
 __pycache__
+
+notebooks/

@@ -1,0 +1,21 @@
+[build-system]
+requires = ['flit_core >=2,<3', 'cython', 'numpy', 'POT']
+build-backend = 'flit_core.buildapi'
+
+[tool.flit.metadata]
+module = 'wwl'
+author = 'Matteo Togninalli'
+author-email = 'matteo.togninalli@bsse.ethz.ch'
+home-page = 'https://github.com/BorgwardtLab/WWL'
+classifiers = ['License :: OSI Approved :: MIT License']
+requires=[
+	'Cython',
+	'POT',
+	'numpy',
+	'scikit-learn'
+]
+description-file = 'README.md'
+requires-python = '>=3.6'
+
+[tool.flit.metadata.urls]
+Issues = 'https://github.com/BorgwardtLab/WWL/issues'
