@@ -16,29 +16,24 @@ WWL relies on the following dependencies:
 
 ## Installation
 
-**CURRENTLY UNDER DEVELOPMENT**
-
 The easiest way is to install WWL from the Python Package Index (PyPI) via
 
-```
-$ pip install cython numpy wwl
+```sh
+$ pip install Cython numpy 
+$ pip install wwl
 ```
 
 ## Usage
 
-**CURRENTLY UNDER DEVELOPMENT**
-
-The WWL package contains function to generate a `n x n` kernel matrix between 
+The WWL package contains functions to generate a `n x n` kernel matrix between 
 a set of `n` graphs.
 
 The API also allows the user to directly call the different steps described in the paper, namely:
 - generate the embeddings for the nodes of both discretely labelled and continuously attributed graphs,
-- 
+- compute the pairwise distance between a set of graphs
 
-The package provides functions to transform a set of `n` training time series and `o` test time series into an `n x n` distance matrix for training and an `o x n` distance matrix for testing.
-Additionally, we provide a way to run a grid search for a krein space SVM. `krein_svm_grid_search` runs a `5`-fold
-cross-validation on the training set to determine the best hyperparameters. Then, its classification accuracy is
-computed on the test set.
+Please refer to [the src README](https://github.com/BorgwardtLab/WWL/blob/master/src) for detailed documentation.
+
 
 ## Experiments
 

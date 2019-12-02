@@ -4,8 +4,10 @@
 # December 2019, M. Togninalli
 # -----------------------------------------------------------------------------
 from .propagation_scheme import WeisfeilerLehman, ContinuousWeisfeilerLehman
-from sklearn.metric.pairwise import laplacian_kernel
+from sklearn.metrics.pairwise import laplacian_kernel
 import ot
+import numpy as np
+
 
 def _compute_wasserstein_distance(label_sequences, sinkhorn=False, 
                                     categorical=False, sinkhorn_lambda=1e-2):
@@ -15,7 +17,6 @@ def _compute_wasserstein_distance(label_sequences, sinkhorn=False,
     '''
     # Get the iteration number from the embedding file
     n = len(label_sequences)
-    emb_size = label_sequences[0].shape[1]
     
     M = np.zeros((n,n))
     # Iterate over pairs of graphs
@@ -40,7 +41,7 @@ def _compute_wasserstein_distance(label_sequences, sinkhorn=False,
     M = (M + M.T)
     return M
 
-def pairwise_wasserstein_distance(X, node_features = None, num_iterations=3, sinkhorn=False):
+def pairwise_wasserstein_distance(X, node_features = None, num_iterations=3, sinkhorn=False, enforce_continuous=False):
     """
     Pairwise computation of the Wasserstein distance between embeddings of the 
     graphs in X.
@@ -52,7 +53,10 @@ def pairwise_wasserstein_distance(X, node_features = None, num_iterations=3, sin
     """
     # First check if the graphs are continuous vs categorical
     categorical = True
-    if node_features:
+    if enforce_continuous:
+        print('Enforce continous flag is on, using CONTINUOUS propagation scheme.')
+        categorical = False
+    elif node_features is not None:
         print('Continuous node features provided, using CONTINUOUS propagation scheme.')
         categorical = False
     else:
@@ -73,7 +77,7 @@ def pairwise_wasserstein_distance(X, node_features = None, num_iterations=3, sin
         node_representations = es.fit_transform(X, node_features=node_features, num_iterations=num_iterations)
 
     # Compute the Wasserstein distance
-    pairwise_distances = _compute_wasserstein_distance(label_sequences, sinkhorn=sinkhorn, 
+    pairwise_distances = _compute_wasserstein_distance(node_representations, sinkhorn=sinkhorn, 
                                     categorical=categorical, sinkhorn_lambda=1e-2)
     return pairwise_distances
 

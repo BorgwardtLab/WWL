@@ -63,7 +63,7 @@ def main():
     # Run Wasserstein distance computation
     print('Computing the Wasserstein distances...')
     wasserstein_distances = compute_wasserstein_distance(label_sequences, h, sinkhorn=sinkhorn,
-                                                            discrete=dataset=='ENZYMES')
+                                                            discrete=dataset=='MUTAG')
 
     # Save Wasserstein distance matrices
     for i, D_w in enumerate(wasserstein_distances):

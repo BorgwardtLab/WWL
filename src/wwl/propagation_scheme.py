@@ -13,6 +13,10 @@ import argparse
 import igraph as ig
 import os
 
+import copy
+from collections import defaultdict
+from typing import List
+
 ####################
 # Weisfeiler-Lehman
 ####################
@@ -56,6 +60,7 @@ class WeisfeilerLehman(TransformerMixin):
                     new_labels.append(self._preprocess_relabel_dict[label])
             x.vs['label'] = new_labels
             self._results[0][i] = (labels, new_labels)
+            self._label_sequences[i][:, 0] = new_labels
             preprocessed_graphs.append(x)
         self._reset_label_generation()
         return preprocessed_graphs
@@ -128,7 +133,7 @@ class ContinuousWeisfeilerLehman(TransformerMixin):
         self._results = defaultdict(dict)
         self._label_sequences = []
 
-    def _preprocess_graphs(self, X: List[ig.graph]):
+    def _preprocess_graphs(self, X: List[ig.Graph]):
         """
         Load graphs from gml files.
         """
@@ -149,13 +154,9 @@ class ContinuousWeisfeilerLehman(TransformerMixin):
             adj_mat.append(adj_mat_cur.astype(int))
             n_nodes.append(adj_mat_cur.shape[0])
 
-        # Check if there is a node_features.npy file 
-        # containing continuous attributes
-        # PS: these were obtained by processing the TU Dortmund website
-        # If none is present, keep degree or label as features.
-        attribtues_filenames = os.path.join(data_directory, 'node_features.npy')
-        if os.path.isfile(attribtues_filenames):
-            node_features = np.load(attribtues_filenames)
+        # By default, keep degree or label as features, if other features shall
+        # to be used (e.g. the one from the TU Dortmund website), 
+        # provide them to the fit_transform function.
 
         n_nodes = np.asarray(n_nodes)
         node_features = np.asarray(node_features)
@@ -183,7 +184,7 @@ class ContinuousWeisfeilerLehman(TransformerMixin):
         Node features should be provided as a numpy array.
         """
         node_features_labels, adj_mat, n_nodes = self._preprocess_graphs(X)
-        if not node_features:
+        if node_features is None:
             node_features = node_features_labels
 
         node_features_data = scale(np.concatenate(node_features, axis=0), axis = 0)

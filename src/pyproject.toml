@@ -12,7 +12,8 @@ requires=[
 	'Cython',
 	'POT',
 	'numpy',
-	'scikit-learn'
+	'scikit-learn',
+    'python-igraph',
 ]
 description-file = 'README.md'
 requires-python = '>=3.6'
