@@ -1,7 +1,7 @@
 # Wasserstein Weisfeiler-Lehman Graph Kernels
 This repository contains the accompanying code for the NeurIPS 2019 paper
 _Wasserstein Weisfeiler-Lehman Graph Kernels_ available 
-[here](https://arxiv.org/abs/1906.01277).
+[here](http://papers.nips.cc/paper/8872-wasserstein-weisfeiler-lehman-graph-kernels).
 The repository contains both the package that implements the graph kernels (in `src`)
 and scripts to reproduce some of the results of the paper (in `experiments`).
 
