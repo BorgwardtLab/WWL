@@ -53,14 +53,12 @@ Computational Biology Lab](https://www.bsse.ethz.ch/mlcb):
 Please use the following BibTeX citation when using our method or comparing against it:
 ```
 @InCollection{Togninalli19,
-  author        = {Togninalli, Matteo and Ghisu, Elisabetta and Llinares-López, Felipe and Rieck, Bastian and Borgwardt, Karsten},
-  title         = {Wasserstein Weisfeiler--Lehman Graph Kernels},
-  booktitle     = {Advances in Neural Information Processing Systems 32},
-  year          = {2019},
-  pubstate      = {forthcoming},
-  eprint        = {1906.01277},
-  archiveprefix = {arXiv},
-  author+an     = {4=highlight},
-  primaryclass  = {cs.LG},
+  author    = {Togninalli, Matteo and Ghisu, Elisabetta and Llinares-L{\'o}pez, Felipe and Rieck, Bastian and Borgwardt, Karsten},
+  title     = {Wasserstein Weisfeiler--Lehman Graph Kernels},
+  booktitle = {Advances in Neural Information Processing Systems~32~(NeurIPS)},
+  year      = {2019},
+  editor    = {Wallach, H. and Larochelle, H. and Beygelzimer, A. and d'Alch\'{e}{-}Buc, F. and Fox, E. and Garnett, R.},
+  publisher = {Curran Associates, Inc.},
+  pages     = {6436--6446},
 }
 ```
