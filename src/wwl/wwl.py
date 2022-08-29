@@ -12,6 +12,8 @@ from sklearn.metrics.pairwise import laplacian_kernel
 
 from .propagation_scheme import WeisfeilerLehman, ContinuousWeisfeilerLehman
 
+logging.basicConfig(level=logging.INFO)
+
 def logging_config(level='DEBUG'):
     level = logging.getLevelName(level.upper())
     logging.basicConfig(level=level)
