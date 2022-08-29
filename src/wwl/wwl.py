@@ -3,11 +3,19 @@
 #
 # December 2019, M. Togninalli
 # -----------------------------------------------------------------------------
-from .propagation_scheme import WeisfeilerLehman, ContinuousWeisfeilerLehman
-from sklearn.metrics.pairwise import laplacian_kernel
+import sys
+import logging
+
 import ot
 import numpy as np
+from sklearn.metrics.pairwise import laplacian_kernel
 
+from .propagation_scheme import WeisfeilerLehman, ContinuousWeisfeilerLehman
+
+def logging_config(level='DEBUG'):
+    level = logging.getLevelName(level.upper())
+    logging.basicConfig(level=level)
+    pass
 
 def _compute_wasserstein_distance(label_sequences, sinkhorn=False, 
                                     categorical=False, sinkhorn_lambda=1e-2):
@@ -54,19 +62,19 @@ def pairwise_wasserstein_distance(X, node_features = None, num_iterations=3, sin
     # First check if the graphs are continuous vs categorical
     categorical = True
     if enforce_continuous:
-        print('Enforce continous flag is on, using CONTINUOUS propagation scheme.')
+        logging.info('Enforce continous flag is on, using CONTINUOUS propagation scheme.')
         categorical = False
     elif node_features is not None:
-        print('Continuous node features provided, using CONTINUOUS propagation scheme.')
+        logging.info('Continuous node features provided, using CONTINUOUS propagation scheme.')
         categorical = False
     else:
         for g in X:
             if not 'label' in g.vs.attribute_names():
-                print('No label attributed to graphs, use degree instead and use CONTINUOUS propagation scheme.')
+                logging.info('No label attributed to graphs, use degree instead and use CONTINUOUS propagation scheme.')
                 categorical = False
                 break
         if categorical:
-            print('Categorically-labelled graphs, using CATEGORICAL propagation scheme.')
+            logging.info('Categorically-labelled graphs, using CATEGORICAL propagation scheme.')
     
     # Embed the nodes
     if categorical:
