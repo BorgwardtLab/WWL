@@ -159,7 +159,7 @@ class ContinuousWeisfeilerLehman(TransformerMixin):
         # provide them to the fit_transform function.
 
         n_nodes = np.asarray(n_nodes)
-        node_features = np.asarray(node_features)
+        node_features = np.asarray(node_features, dtype=object)
 
         return node_features, adj_mat, n_nodes
 
