@@ -6,6 +6,7 @@ This script reproduces the experiment presented in the paper for 2 datasets.
 Before launching the script, ensure to ahve the following dependencies installed:
 - `numpy`
 - `scikit-learn`
+- `pandas`
 - `POT` ([github](https://github.com/rflamary/POT))
 - `python-igraph`
 
