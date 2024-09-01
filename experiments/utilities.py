@@ -70,7 +70,7 @@ def load_continuous_graphs(data_directory):
     # If none is present, keep degree or label as features.
     attribtues_filenames = os.path.join(data_directory, 'node_features.npy')
     if os.path.isfile(attribtues_filenames):
-        node_features = np.load(attribtues_filenames)
+        node_features = np.load(attribtues_filenames, allow_pickle=True)
 
     n_nodes = np.asarray(n_nodes)
     node_features = np.asarray(node_features)

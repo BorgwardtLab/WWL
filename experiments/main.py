@@ -53,7 +53,9 @@ def main():
 
     # Save embeddings to output folder
     out_name = f'{dataset}_wl_{embedding_type}_embeddings_h{h}.npy'
-    np.save(os.path.join(output_path, out_name), label_sequences)
+    np.save(
+            os.path.join(output_path, out_name),
+            np.array(label_sequences, dtype=object))
     print(f'Embeddings for {dataset} computed, saved to {os.path.join(output_path, out_name)}.')
     print()
 
